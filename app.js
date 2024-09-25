@@ -1,6 +1,7 @@
 const express = require('express');
 const  sequelize = require('./db/mysql');
 const mongoose = require('mongoose');
+const textRoutes = require('./routes/textRoute');
 const morgan = require('morgan');
 const winston = require('./config/logger');
 const bodyParser = require('body-parser');
@@ -11,6 +12,8 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use('/api', textRoutes);
 
 const PORT = process.env.PORT || 3000;
 sequelize.sync()
